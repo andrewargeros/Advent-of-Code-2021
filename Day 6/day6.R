@@ -46,9 +46,14 @@
    select(day80) %>% 
    count() %>% 
    as.integer()
+
+# [1] 346063 
  
+ ## Part Two ---------------------------------------------------------------------------------------
  
- ## Part Two ------------------------------------------------------------------------------------------------
+ # Basically either approach works... Using the above might be a little more explainable but will 
+ # chew up a ton of RAM for higher iterations. Below uses an aggregate table for each day, so it is
+ # less computationally intensive than above
  
  basetype = tibble(value = 0:8) %>% 
     full_join(., data %>% count(initial), 
@@ -59,7 +64,7 @@
     add = basetype %>% 
        filter(value == 0) %>% 
        select(last_col()) %>% 
-       as.numeric()
+       as.numeric() # Learned the hard way that big ints do not work for R... this cannot be as.integer()
     
     new_day = basetype %>% 
        select(value, last_col()) %>% 
@@ -76,5 +81,8 @@
        mutate_all(~replace_na(.x, 0))
 }
 
- basetype %>% summarise(s = sum(day256))
- 
+ basetype %>% 
+    summarise(s = sum(day256)) %>% 
+    as.numeric()
+
+# [1] 1572358335990
