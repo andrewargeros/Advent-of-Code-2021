@@ -83,6 +83,19 @@
 
  basetype %>% 
     summarise(s = sum(day256)) %>% 
-    as.numeric()
+    as.numeric() %>% 
+    scales::comma()
 
 # [1] 1572358335990
+ 
+## Just for Fun -----------------------------------------------------------------------------------
+ 
+basetype %>% 
+    select(2:last_col()) %>% 
+    summarise_all(sum) %>% 
+    gather() %>% 
+    mutate(day = str_extract(key, "\\d*$") %>% as.numeric() %>% replace_na(0)) %>% 
+    ggplot() +
+    aes(x = day, y = value) +
+    geom_line()
+ 
