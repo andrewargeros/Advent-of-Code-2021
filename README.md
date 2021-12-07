@@ -3,6 +3,8 @@ The [Advent of Code](https://adventofcode.com/) is a yearly challenge held each 
 
 ## Entries:
 
+Click the `Day` to view the solutions and the `Title` to view the problem.
+
 | Day | Title |
 | ---- | ----- |
 | [1](https://github.com/andrewargeros/Advent-of-Code-2021/tree/main/Day%201) | [Day 1: Sonar Sweep](https://adventofcode.com/2021/day/1) |
